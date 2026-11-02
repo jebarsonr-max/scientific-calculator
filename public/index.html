@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scientific Calculator for Students | C Engine</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <header class="app-header">
+            <div class="header-left">
+                <span class="badge c-badge">C Language Engine</span>
+                <h1>Scientific Calculator</h1>
+            </div>
+            <div class="header-right">
+                <div class="mode-toggle-group">
+                    <button id="modeDegBtn" class="mode-btn active" title="Degree Mode">DEG</button>
+                    <button id="modeRadBtn" class="mode-btn" title="Radian Mode">RAD</button>
+                </div>
+                <button id="toggleHistoryBtn" class="action-icon-btn" title="Toggle History Panel">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <circle cx="12" cy="12" r="10"></circle>
+                        <polyline points="12 6 12 12 16 14"></polyline>
+                    </svg>
+                    <span>History</span>
+                </button>
+            </div>
+        </header>
+
+        <!-- Main Calculator Layout -->
+        <div class="main-content">
+            <div class="calculator-card">
+                <!-- Display Section -->
+                <div class="display-container">
+                    <div class="display-mode-indicator">
+                        <span id="currentModeLabel">DEG</span>
+                        <span id="engineStatusBadge" class="status-online">C Engine: Ready</span>
+                    </div>
+                    <div id="expressionDisplay" class="expression-display">&nbsp;</div>
+                    <div id="resultDisplay" class="result-display">0</div>
+                    <div id="errorBanner" class="error-banner hidden">
+                        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon>
+                            <line x1="12" y1="8" x2="12" y2="12"></line>
+                            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+                        </svg>
+                        <span id="errorMessage">Error text</span>
+                    </div>
+                </div>
+
+                <!-- Tabs for operations categories -->
+                <div class="keypad-layout">
+                    <!-- Scientific Operations Section -->
+                    <div class="keypad-column scientific-keys">
+                        <div class="section-label">TRIGONOMETRIC & LOGS</div>
+                        <div class="grid-scientific">
+                            <button class="calc-btn fn-btn" data-op="SIN">sin</button>
+                            <button class="calc-btn fn-btn" data-op="COS">cos</button>
+                            <button class="calc-btn fn-btn" data-op="TAN">tan</button>
+                            <button class="calc-btn fn-btn" data-op="LN">ln</button>
+
+                            <button class="calc-btn fn-btn" data-op="ASIN">sin⁻¹</button>
+                            <button class="calc-btn fn-btn" data-op="ACOS">cos⁻¹</button>
+                            <button class="calc-btn fn-btn" data-op="ATAN">tan⁻¹</button>
+                            <button class="calc-btn fn-btn" data-op="LOG10">log₁₀</button>
+
+                            <button class="calc-btn fn-btn" data-op="SQRT">√x</button>
+                            <button class="calc-btn fn-btn" data-op="CBRT">∛x</button>
+                            <button class="calc-btn fn-btn" data-op="POW">xʸ</button>
+                            <button class="calc-btn fn-btn" data-op="EXP">eˣ</button>
+
+                            <button class="calc-btn fn-btn" data-op="SQUARE">x²</button>
+                            <button class="calc-btn fn-btn" data-op="CUBE">x³</button>
+                            <button class="calc-btn fn-btn" data-op="RECIPROCAL">1/x</button>
+                            <button class="calc-btn fn-btn" data-op="FACTORIAL">n!</button>
+
+                            <button class="calc-btn fn-btn" data-op="ABS">|x|</button>
+                            <button class="calc-btn fn-btn" data-op="PERCENT">%</button>
+                            <button class="calc-btn fn-btn" data-op="GCD">GCD</button>
+                            <button class="calc-btn fn-btn" data-op="LCM">LCM</button>
+                        </div>
+                    </div>
+
+                    <!-- Divider -->
+                    <div class="keypad-divider"></div>
+
+                    <!-- Standard Keypad (Numbers & Basic Arithmetic) -->
+                    <div class="keypad-column standard-keys">
+                        <div class="section-label">BASIC ARITHMETIC & NUMPAD</div>
+                        <div class="grid-standard">
+                            <button class="calc-btn action-btn danger" id="clearAllBtn">AC</button>
+                            <button class="calc-btn action-btn" id="backspaceBtn">DEL</button>
+                            <button class="calc-btn fn-btn" data-op="MOD">mod</button>
+                            <button class="calc-btn op-btn" data-op="DIV">÷</button>
+
+                            <button class="calc-btn num-btn" data-num="7">7</button>
+                            <button class="calc-btn num-btn" data-num="8">8</button>
+                            <button class="calc-btn num-btn" data-num="9">9</button>
+                            <button class="calc-btn op-btn" data-op="MUL">×</button>
+
+                            <button class="calc-btn num-btn" data-num="4">4</button>
+                            <button class="calc-btn num-btn" data-num="5">5</button>
+                            <button class="calc-btn num-btn" data-num="6">6</button>
+                            <button class="calc-btn op-btn" data-op="SUB">−</button>
+
+                            <button class="calc-btn num-btn" data-num="1">1</button>
+                            <button class="calc-btn num-btn" data-num="2">2</button>
+                            <button class="calc-btn num-btn" data-num="3">3</button>
+                            <button class="calc-btn op-btn" data-op="ADD">+</button>
+
+                            <button class="calc-btn num-btn" id="negateBtn">±</button>
+                            <button class="calc-btn num-btn" data-num="0">0</button>
+                            <button class="calc-btn num-btn" data-num=".">.</button>
+                            <button class="calc-btn equals-btn" id="equalsBtn">=</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer notice for college evaluation -->
+                <div class="calc-card-footer">
+                    <span>Architecture: Frontend &rarr; IPC/CLI &rarr; <code>calculator.exe</code> (C99 Structs & Functions Engine)</span>
+                </div>
+            </div>
+
+            <!-- History Panel (Side Drawer) -->
+            <div id="historyPanel" class="history-panel">
+                <div class="history-header">
+                    <h3>Calculation History</h3>
+                    <div class="history-actions">
+                        <button id="clearHistoryBtn" class="text-btn danger" title="Clear All History">Clear</button>
+                        <button id="closeHistoryBtn" class="icon-close-btn">&times;</button>
+                    </div>
+                </div>
+                <div class="history-subtitle">Stored up to last 20 calculations in C memory buffer</div>
+                <div id="historyList" class="history-list">
+                    <div class="empty-history">No calculations yet. Perform operations to record history.</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
+

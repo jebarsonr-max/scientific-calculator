@@ -273,6 +273,13 @@ python app_server.py
 ```
 This starts the local bridge server and opens `http://localhost:5000` in your browser. All button clicks invoke `calculator.exe --json` under the hood!
 
+### Option D: Deploying to Vercel (1-Click Cloud Deployment)
+This repository is configured for automated Vercel deployment:
+1. Go to [Vercel Dashboard](https://vercel.com/new).
+2. Click **"Import Project"** and select your GitHub repository (`jebarsonr-max/scientific-calculator`).
+3. Vercel automatically detects `vercel.json` and `package.json`.
+4. Click **Deploy**. Vercel compiles the C engine on Linux (`gcc main.c calculator.c history.c -o api/calculator_linux -lm`) and serves both the static UI and the serverless C calculation endpoint (`/api/calculate`)!
+
 ---
 
 ## 11. Automated Verification & Test Cases

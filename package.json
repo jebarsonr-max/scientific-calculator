@@ -1,0 +1,19 @@
+{
+  "name": "scientific-calculator-c",
+  "version": "1.0.0",
+  "description": "Scientific Calculator using C Structures and Functions with Vercel Web Deployment",
+  "main": "api/calculate.js",
+  "scripts": {
+    "build": "gcc -Wall -O2 main.c calculator.c history.c -o api/calculator_linux -lm && chmod +x api/calculator_linux || echo Done",
+    "vercel-build": "gcc -Wall -O2 main.c calculator.c history.c -o api/calculator_linux -lm && chmod +x api/calculator_linux"
+  },
+  "keywords": [
+    "c",
+    "scientific-calculator",
+    "structures",
+    "functions",
+    "vercel"
+  ],
+  "author": "jebarsonr-max",
+  "license": "MIT"
+}

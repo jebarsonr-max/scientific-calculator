@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "buildCommand": "gcc -Wall -O2 main.c calculator.c history.c -o api/calculator_linux -lm && chmod +x api/calculator_linux",
+  "outputDirectory": "public",
+  "functions": {
+    "api/calculate.js": {
+      "includeFiles": "api/calculator_linux"
+    }
+  }
+}

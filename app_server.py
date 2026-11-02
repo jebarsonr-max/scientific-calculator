@@ -14,7 +14,9 @@ from http.server import HTTPServer, SimpleHTTPRequestHandler
 
 PORT = 5000
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-WEB_DIR = os.path.join(BASE_DIR, "web_gui")
+WEB_DIR = os.path.join(BASE_DIR, "public")
+if not os.path.isdir(WEB_DIR):
+    WEB_DIR = os.path.join(BASE_DIR, "web_gui")
 
 # Resolve calculator executable
 CALC_EXE = os.path.join(BASE_DIR, "calculator.exe")
